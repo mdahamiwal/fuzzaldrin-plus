@@ -40,8 +40,8 @@ coreChars = (query, optCharRegEx = opt_char_re) ->
 # For that we assume uppercase and lowercase version of the string have the same length. Of course unicode being unicode there's exceptions.
 # See ftp://ftp.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt for the list
 #
-# "Stra�e".toUpperCase() -> "STRASSE"
-# truncatedUpperCase("Stra�e") -> "STRASE"
+# "Straße".toUpperCase() -> "STRASSE"
+# truncatedUpperCase("Straße") -> "STRASE"
 # iterating over every character, getting uppercase variant and getting first char of that.
 #
 
