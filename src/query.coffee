@@ -14,9 +14,9 @@ class Query
     return null unless query and query.length
 
     @query = query
-    @query_lw = query.toLowerCase()
+    @query_lw = query.toLocaleLowerCase()
     @core = coreChars(query, optCharRegEx)
-    @core_lw = @core.toLowerCase()
+    @core_lw = @core.toLocaleLowerCase()
     @core_up = truncatedUpperCase(@core)
     @depth = countDir(query, query.length, pathSeparator )
     @ext = getExtension(@query_lw)
@@ -40,14 +40,14 @@ coreChars = (query, optCharRegEx = opt_char_re) ->
 # For that we assume uppercase and lowercase version of the string have the same length. Of course unicode being unicode there's exceptions.
 # See ftp://ftp.unicode.org/Public/UCD/latest/ucd/SpecialCasing.txt for the list
 #
-# "Straße".toUpperCase() -> "STRASSE"
-# truncatedUpperCase("Straße") -> "STRASE"
+# "Straï¿½e".toUpperCase() -> "STRASSE"
+# truncatedUpperCase("Straï¿½e") -> "STRASE"
 # iterating over every character, getting uppercase variant and getting first char of that.
 #
 
 truncatedUpperCase = (str) ->
   upper = ""
-  upper += char.toUpperCase()[0] for char in str
+  upper += char.toLocaleUpperCase()[0] for char in str
   return upper
 
 #

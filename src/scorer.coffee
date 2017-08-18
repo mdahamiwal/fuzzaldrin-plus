@@ -36,7 +36,7 @@ miss_coeff = 0.75 #Max number missed consecutive hit = ceil(miss_coeff*query.len
 exports.score = (string, query, options) ->
   {preparedQuery, allowErrors} = options
   return 0 unless allowErrors or isMatch(string, preparedQuery.core_lw, preparedQuery.core_up)
-  string_lw = string.toLowerCase()
+  string_lw = string.toLocaleLowerCase()
   score = computeScore(string, string_lw, preparedQuery)
   return Math.ceil(score)
 

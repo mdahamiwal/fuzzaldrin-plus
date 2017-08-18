@@ -13,7 +13,7 @@ file_coeff = 1.2 # Full path is also penalized for length of basename. This adju
 exports.score = (string, query, options) ->
   {preparedQuery, allowErrors} = options
   return 0 unless allowErrors or isMatch(string, preparedQuery.core_lw, preparedQuery.core_up)
-  string_lw = string.toLowerCase()
+  string_lw = string.toLocaleLowerCase()
   score = computeScore(string, string_lw, preparedQuery)
   score = scorePath(string, string_lw, score, options)
   return Math.ceil(score)

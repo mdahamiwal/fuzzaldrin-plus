@@ -179,7 +179,7 @@
     if (!(allowErrors || isMatch(string, preparedQuery.core_lw, preparedQuery.core_up))) {
       return [];
     }
-    string_lw = string.toLowerCase();
+    string_lw = string.toLocaleLowerCase();
     matches = computeMatch(string, string_lw, preparedQuery);
     if (matches.length === 0) {
       return matches;
@@ -237,7 +237,7 @@
         strPos = matchPos;
       }
     }
-    if (strPos < string.length - 1) {
+    if (strPos <= string.length - 1) {
       output += string.substring(strPos);
     }
     return output;
@@ -400,7 +400,7 @@
     if (!(allowErrors || isMatch(string, preparedQuery.core_lw, preparedQuery.core_up))) {
       return 0;
     }
-    string_lw = string.toLowerCase();
+    string_lw = string.toLocaleLowerCase();
     score = computeScore(string, string_lw, preparedQuery);
     score = scorePath(string, string_lw, score, options);
     return Math.ceil(score);
@@ -510,9 +510,9 @@
         return null;
       }
       this.query = query;
-      this.query_lw = query.toLowerCase();
+      this.query_lw = query.toLocaleLowerCase();
       this.core = coreChars(query, optCharRegEx);
-      this.core_lw = this.core.toLowerCase();
+      this.core_lw = this.core.toLocaleLowerCase();
       this.core_up = truncatedUpperCase(this.core);
       this.depth = countDir(query, query.length, pathSeparator);
       this.ext = getExtension(this.query_lw);
@@ -537,7 +537,7 @@
     upper = "";
     for (_i = 0, _len = str.length; _i < _len; _i++) {
       char = str[_i];
-      upper += char.toUpperCase()[0];
+      upper += char.toLocaleUpperCase()[0];
     }
     return upper;
   };
@@ -573,7 +573,7 @@
     if (!(allowErrors || isMatch(string, preparedQuery.core_lw, preparedQuery.core_up))) {
       return 0;
     }
-    string_lw = string.toLowerCase();
+    string_lw = string.toLocaleLowerCase();
     score = computeScore(string, string_lw, preparedQuery);
     return Math.ceil(score);
   };
@@ -1059,6 +1059,10 @@ process.off = noop;
 process.removeListener = noop;
 process.removeAllListeners = noop;
 process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');

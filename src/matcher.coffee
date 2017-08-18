@@ -14,7 +14,7 @@ exports.match = match = (string, query, options) ->
   {allowErrors, preparedQuery, pathSeparator} = options
 
   return [] unless allowErrors or isMatch(string, preparedQuery.core_lw, preparedQuery.core_up)
-  string_lw = string.toLowerCase()
+  string_lw = string.toLocaleLowerCase()
 
   # Full path results
   matches = computeMatch(string, string_lw, preparedQuery)
